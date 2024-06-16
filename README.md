@@ -33,7 +33,7 @@ declare_afk:
   when_dealing_damage: true
 ```
 
-### ✔ Credits & Depend
+## Credits & Depend
 | Authors | Github | Lib |
 |---------|--------|-----|
 | Cooldogepm | [Cooldogepm](https://github.com/cooldogepm) | [BedrockEconomy](https://github.com/cooldogepm/BedrockEconomy) |
