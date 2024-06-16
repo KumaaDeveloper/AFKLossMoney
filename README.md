@@ -1,36 +1,36 @@
 ## General
-AFKLossMoney is a Pocketmine plug-in that functions to reduce player money when the player AFK
+PM-Math is a Pocketmine plug-in that functions to provide maths problems and players can get prizes if they answer correctly.
 
 ## Features
-- Reducing your money when you AFK
-- Reducing your money using percentages
+- Consists of addition, subtraction, multiplication, and division
+- Custom message
+- Custom prize
 - Custom economy
   
 ## Configuration
 ```yaml
-# Configuration for AFKLossMoney plugin
+# Configuration for PM-Math plugin
 
-# Interval (in seconds) to check for AFK players
-afk_check_interval: 10 # Default is 5 minutes
+# Time lapse for maths problems to be answered
+problem_interval: 60
 
-# Percentage of money lost due to being AFK
-afk_loss_percentage: 0.05 # Default is 5%
+# Message when the player successfully answers the maths question
+maths_completion_message: "§aCongratulations! §e{player} §asuccessfully answered the maths question correctly §6{money} §aMoney"
 
-# The message sent to players when they lose money due to being AFK
-afk_loss_message: "§cYou Lost Money by §e{AFK_LOST} §cBecause of AFK"
+# Message when no one answers the maths question
+no_answer_message: "§cNo one answered the maths question, move on to the next maths question..."
 
-# The message sent to players to inform them of their remaining money
-money_message: "§aYour remaining money is §e{Your_MONEY_LOST}."
+# Delay when question is missed
+maths_delay_solved: 5
 
-# Economy provider settings (customize based on your economy settings)
-economy:
+# Rewards when players successfully answer maths questions
+prize_min: 1000
+prize_max: 10000
+number_max: 100
+
+# Economy you are using (Must use LibPiggyEconomy)
+Economy:
   type: "economyapi" # Change this to your specific economy provider if needed (bedrockeconomy/economyapi)
-
-# AFK declaration settings
-declare_afk:
-  when_breaking_block: true
-  when_placing_block: true
-  when_dealing_damage: true
 ```
 
 ## Credits & Depend
