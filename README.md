@@ -1,4 +1,4 @@
-# General
+## General
 AFKLossMoney is a Pocketmine plug-in that functions to reduce player money when the player AFK
 
 ## Features
