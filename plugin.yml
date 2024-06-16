@@ -1,0 +1,8 @@
+name: AFKLossMoney
+version: 1.0.0
+api: [5.0.0]
+main: KumaDev\AFKLossMoney\Main
+author: KumaDeveloper
+description: A plugin to reduce your money when you AFK
+dependencies:
+  - libPiggyEconomy
