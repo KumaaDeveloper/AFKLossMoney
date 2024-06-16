@@ -31,7 +31,6 @@ class Main extends PluginBase implements Listener {
     private $afkPlayers = [];
 
     public function onEnable(): void {
-        $this->getLogger()->info("Plugin AFKLossMoney telah diaktifkan.");
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
         // Check for required dependencies
