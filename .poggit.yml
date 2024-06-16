@@ -5,4 +5,5 @@ branches:
 projects:
   AFKLossMoney:
     path: ""
+    icon: icon.png
 ...
