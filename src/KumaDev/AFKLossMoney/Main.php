@@ -38,7 +38,7 @@ class Main extends PluginBase implements Listener {
             "libPiggyEconomy" => libPiggyEconomy::class
         ] as $virion => $class) {
             if (!class_exists($class)) {
-                $this->getLogger()->error("[AFKLossMoney] " . $virion . " virion not found. Please download DeVirion Now!.");
+                $this->getServer()->getLogger()->error("[AFKLossMoney] " . $virion . " virion not found. Please download DeVirion Now!.");
                 $this->getServer()->getPluginManager()->disablePlugin($this);
                 return;
             }
@@ -54,7 +54,7 @@ class Main extends PluginBase implements Listener {
 
         // Ensure economy provider is set in the config
         if ($economyConfig === null || !isset($economyConfig['type'])) {
-            $this->getLogger()->error("[AFKLossMoney] No economy provider specified in config.yml.");
+            $this->getServer()->getLogger()->error("[AFKLossMoney] No economy provider specified in config.yml.");
             $this->getServer()->getPluginManager()->disablePlugin($this);
             return;
         }
@@ -65,7 +65,7 @@ class Main extends PluginBase implements Listener {
                 'provider' => $economyConfig['type']
             ]);
         } catch (MissingProviderDependencyException $e) {
-            $this->getLogger()->error("[AFKLossMoney] Dependencies for provider not found: " . $e->getMessage());
+            $this->getServer()->getLogger()->error("[AFKLossMoney] Dependencies for provider not found: " . $e->getMessage());
             $this->getServer()->getPluginManager()->disablePlugin($this);
             return;
         }
@@ -122,14 +122,14 @@ class Main extends PluginBase implements Listener {
     public function onPlayerQuit(PlayerQuitEvent $event): void {
         $player = $event->getPlayer();
         $playerName = $player->getName();
-        $this->removePlayerLastPosition($playerName);
+        unset($this->afkPlayers[$playerName]);
     }
 
     public function checkAFKPlayers(): void {
         $afkInterval = $this->config->get("afk_check_interval", 300); // Get the AFK check interval
         foreach ($this->getServer()->getOnlinePlayers() as $player) {
             $playerName = $player->getName();
-            $lastMoveTime = $this->getPlayerLastMoveTime($playerName);
+            $lastMoveTime = $this->afkPlayers[$playerName]["last_move_time"] ?? time();
             $currentTime = time();
             $afkDuration = $currentTime - $lastMoveTime;
 
@@ -156,29 +156,13 @@ class Main extends PluginBase implements Listener {
                                 });
                             } else {
                                 $player->sendMessage(TextFormat::RED . "There was an error while deducting your money or your money is already depleted.");
-                                $this->getLogger()->warning("Failed to deduct player's money.");
+                                $this->getServer()->getLogger()->warning("Failed to deduct player's money.");
                             }
                         });
                     }
                 });
             }
         }
-    }
-
-    private function getPlayerLastPosition(string $playerName): ?Vector3 {
-        return $this->afkPlayers[$playerName]["position"] ?? null;
-    }
-
-    private function setPlayerLastPosition(string $playerName, Vector3 $position): void {
-        $this->afkPlayers[$playerName]["position"] = $position;
-    }
-
-    private function removePlayerLastPosition(string $playerName): void {
-        unset($this->afkPlayers[$playerName]);
-    }
-
-    private function getPlayerLastMoveTime(string $playerName): int {
-        return $this->afkPlayers[$playerName]["last_move_time"] ?? time();
     }
 
     private function setPlayerLastMoveTime(string $playerName, int $time): void {
