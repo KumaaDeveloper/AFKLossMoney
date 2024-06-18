@@ -1,0 +1,13 @@
+{
+    "name": "kumadev/afklossmoney",
+    "description": "A plugin to reduce your money when you AFK",
+    "type": "project",
+    "require": {
+        "dapigguy/libpiggyeconomy": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "KumaDev\\DeadLossMoney\\": "src/"
+        }
+    }
+}
