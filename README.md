@@ -1,36 +1,36 @@
 ## General
-PM-Math is a Pocketmine plug-in that functions to provide maths problems and players can get prizes if they answer correctly.
+AFKLossMoney is a Pocketmine plug-in that works to reduce player money when players AFK
 
 ## Features
-- Consists of addition, subtraction, multiplication, and division
-- Custom message
-- Custom prize
+- Reducing your money when you afk
+- Reducing your money using percentages
 - Custom economy
   
 ## Configuration
 ```yaml
-# Configuration for PM-Math plugin
+# Configuration for AFKLossMoney plugin
 
-# Time lapse for maths problems to be answered
-problem_interval: 60
+# Interval (in seconds) to check for AFK players
+afk_check_interval: 10 # Default is 5 minutes
 
-# Message when the player successfully answers the maths question
-maths_completion_message: "§aCongratulations! §e{player} §asuccessfully answered the maths question correctly §6{money} §aMoney"
+# Percentage of money lost due to being AFK
+afk_loss_percentage: 0.05 # Default is 5%
 
-# Message when no one answers the maths question
-no_answer_message: "§cNo one answered the maths question, move on to the next maths question..."
+# The message sent to players when they lose money due to being AFK
+afk_loss_message: "§cYou Lost Money by §e{AFK_LOST} §cBecause of AFK"
 
-# Delay when question is missed
-maths_delay_solved: 5
+# The message sent to players to inform them of their remaining money
+money_message: "§aYour remaining money is §e{MONEY}."
 
-# Rewards when players successfully answer maths questions
-prize_min: 1000
-prize_max: 10000
-number_max: 100
+# Economy provider settings (customize based on your economy settings)
+economy:
+  type: "economyapi" # Change this to your specific economy provider if needed (bedrockeconomy/economyapi)
 
-# Economy you are using (Must use LibPiggyEconomy)
-Economy:
-  type: "bedrockeconomy" # Change this to your specific economy provider if needed (bedrockeconomy/economyapi)
+# AFK declaration settings
+declare_afk:
+  when_breaking_block: true
+  when_placing_block: true
+  when_dealing_damage: true
 ```
 
 ## Depend
