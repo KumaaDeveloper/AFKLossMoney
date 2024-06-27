@@ -10,11 +10,11 @@ afk_loss_percentage: 0.05 # Default is 5%
 afk_loss_message: "§cYou Lost Money by §e{AFK_LOST} §cBecause of AFK"
 
 # The message sent to players to inform them of their remaining money
-money_message: "§aYour remaining money is §e{Your_MONEY_LOST}."
+money_message: "§aYour remaining money is §e{MONEY}."
 
 # Economy provider settings (customize based on your economy settings)
 economy:
-  type: "economyapi" # Change this to your specific economy provider if needed (bedrockeconomy/economyapi)
+  type: "bedrockeconomy" # Change this to your specific economy provider if needed (bedrockeconomy/economyapi)
 
 # AFK declaration settings
 declare_afk:

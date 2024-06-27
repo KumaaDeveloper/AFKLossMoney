@@ -11,12 +11,12 @@ use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\plugin\PluginBase;
 use pocketmine\scheduler\Task;
+use pocketmine\scheduler\ClosureTask;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 use DaPigGuy\libPiggyEconomy\libPiggyEconomy;
 use DaPigGuy\libPiggyEconomy\providers\EconomyProvider;
 use DaPigGuy\libPiggyEconomy\exceptions\MissingProviderDependencyException;
-use pocketmine\math\Vector3;
 use pocketmine\player\Player;
 
 class Main extends PluginBase implements Listener {
@@ -149,11 +149,14 @@ class Main extends PluginBase implements Listener {
                                 // Update last move time
                                 $this->setPlayerLastMoveTime($playerName, $currentTime);
 
-                                // Send remaining money message
-                                self::$economyProvider->getMoney($player, function (float $remainingMoney) use ($player) {
-                                    $moneyMessage = str_replace("{Your_MONEY_LOST}", number_format($remainingMoney, 2), $this->config->get("money_message", "§aYour Remaining Money Is As Big As §e{Your_MONEY_LOST}."));
-                                    $player->sendMessage($moneyMessage);
-                                });
+                                // Schedule the remaining money message to appear after 0.2 seconds
+                                $this->getScheduler()->scheduleDelayedTask(new ClosureTask(function () use ($player) {
+                                    // Send remaining money message
+                                    Main::getEconomyProvider()->getMoney($player, function (float $remainingMoney) use ($player) {
+                                        $moneyMessage = str_replace("{MONEY}", number_format($remainingMoney, 2), $this->config->get("money_message", "§aYour remaining money is §e{MONEY}."));
+                                        $player->sendMessage($moneyMessage);
+                                    });
+                                }), 4); // 4 ticks = 0.2 seconds
                             } else {
                                 $player->sendMessage(TextFormat::RED . "There was an error while deducting your money or your money is already depleted.");
                                 $this->getServer()->getLogger()->warning("Failed to deduct player's money.");
