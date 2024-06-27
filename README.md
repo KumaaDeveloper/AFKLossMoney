@@ -30,12 +30,11 @@ number_max: 100
 
 # Economy you are using (Must use LibPiggyEconomy)
 Economy:
-  type: "economyapi" # Change this to your specific economy provider if needed (bedrockeconomy/economyapi)
+  type: "bedrockeconomy" # Change this to your specific economy provider if needed (bedrockeconomy/economyapi)
 ```
 
-## Credits & Depend
-| Authors | Github | Lib |
+## Depend
+| Authors | Github
 |---------|--------|-----|
 | Cooldogepm | [Cooldogepm](https://github.com/cooldogepm) | [BedrockEconomy](https://github.com/cooldogepm/BedrockEconomy) |
 | Mathchat900 | [Mathchat900](https://github.com/mathchat900) | [EconomyAPI](https://github.com/mathchat900/EconomyAPI-PM5) |
-| DaPigGuy | [DaPigGuy](https://github.com/DaPigGuy) | [libPiggyEconomy](https://github.com/DaPigGuy/libPiggyEconomy) |
