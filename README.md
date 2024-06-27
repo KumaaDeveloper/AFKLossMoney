@@ -34,7 +34,7 @@ Economy:
 ```
 
 ## Depend
-| Authors | Github
+| Authors | Github |
 |---------|--------|-----|
 | Cooldogepm | [Cooldogepm](https://github.com/cooldogepm) | [BedrockEconomy](https://github.com/cooldogepm/BedrockEconomy) |
 | Mathchat900 | [Mathchat900](https://github.com/mathchat900) | [EconomyAPI](https://github.com/mathchat900/EconomyAPI-PM5) |
