@@ -2,9 +2,16 @@
     "name": "kumadev/afklossmoney",
     "description": "A plugin to reduce your money when you AFK",
     "type": "project",
+    "license": "Apache-2.0 license",
     "require": {
         "dapigguy/libpiggyeconomy": "dev-master"
     },
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/DaPigGuy/libPiggyEconomy.git"
+		}
+	],
     "autoload": {
         "psr-4": {
             "KumaDev\\AFKLossMoney\\": "src/"
